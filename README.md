@@ -62,7 +62,7 @@ sudo rmmod monitor
 
   Demo of multi-container runtime system:
 
- [Watch Full Demo Video](https://drive.google.com/file/d/1PeXg8sU5VZm--w18kbqiTbApftiEyVTl/view?usp=drive_link)
+ [Click to watch Demo video](https://drive.google.com/file/d/1PeXg8sU5VZm--w18kbqiTbApftiEyVTl/view?usp=drive_link)
 ## 4. Demo with Screenshots
 
 ### 1. Multi-container supervision
