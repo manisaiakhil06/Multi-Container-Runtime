@@ -1,150 +1,150 @@
-# Multi-Container Runtime System
+# 🚀 Multi-Container Runtime System
 
 ---
 
-## 1. Team Information
+## 👥 Team Information
 
-Name: Neeraj R Gowda
-SRN: PES1UG24CS295
+* **Neeraj R Gowda**
+  SRN: PES1UG24CS295
 
-Name: Nallamalli Kanaka Mani Sai Akhil
-SRN: PES1UG24CS290
+* **Nallamalli Kanaka Mani Sai Akhil**
+  SRN: PES1UG24CS290
 
 ---
 
-## 2. Build, Load, and Run Instructions
+## ⚙️ Build, Load, and Run Instructions
 
-### Build the project
+### 🔹 Build the Project
 
+```bash
 make
+```
 
-### Load kernel module
+### 🔹 Load Kernel Module
 
+```bash
 sudo insmod monitor.ko
+```
 
-### Start supervisor
+### 🔹 Start Supervisor
 
+```bash
 sudo ./engine supervisor ./rootfs-base
+```
 
-### Create container filesystems
+### 🔹 Create Container Filesystems
 
+```bash
 cp -a rootfs-base rootfs-alpha
 cp -a rootfs-base rootfs-beta
+```
 
-### Start containers
+### 🔹 Start Containers
 
+```bash
 sudo ./engine start alpha ./rootfs-alpha /bin/sh
 sudo ./engine start beta ./rootfs-beta /bin/sh
+```
 
-### List containers
+### 🔹 List Running Containers
 
+```bash
 sudo ./engine ps
+```
 
-### View logs
+### 🔹 View Logs
 
+```bash
 cat logs/alpha.log
+```
 
-### Stop containers
+### 🔹 Stop Containers
 
+```bash
 sudo ./engine stop alpha
 sudo ./engine stop beta
+```
 
-### Check kernel logs
+### 🔹 Check Kernel Logs
 
+```bash
 sudo dmesg | grep monitor
+```
 
-### Unload module
+### 🔹 Unload Kernel Module
 
+```bash
 sudo rmmod monitor
+```
 
 ---
 
-## 3. Demo with Screenshots
+## 🎥 Demo Video
 
-### 1. Multi-container supervision
-
-![Multi-container](screenshots/1_multicontainer.png)
+➡️ [Watch Demo](https://drive.google.com/file/d/1PeXg8sU5VZm--w18kbqiTbApftiEyVTl/view?usp=drive_link)
 
 ---
 
-### 2. Metadata tracking
+## 📸 Demo with Screenshots
 
-![Metadata](screenshots/2_ps.png)
+### 🔹 Multi-container Supervision
 
----
+### 🔹 Metadata Tracking
 
-### 3. Bounded-buffer logging
+### 🔹 Bounded-buffer Logging
 
-![Logs](screenshots/3_logs.png)
+### 🔹 CLI and IPC
 
----
+### 🔹 Soft-limit Warning
 
-### 4. CLI and IPC
+### 🔹 Hard-limit Enforcement
 
-![IPC](screenshots/4_ipc.png)
+### 🔹 Scheduling Experiment
 
----
-
-### 5. Soft-limit warning
-
-![Soft Limit](screenshots/5_softlimit.png)
+### 🔹 Clean Teardown
 
 ---
 
-### 6. Hard-limit enforcement
+## 🧠 Engineering Analysis
 
-![Hard Limit](screenshots/6_hardlimit.png)
+This project uses **Linux namespaces** and **chroot** to provide lightweight container isolation. Each container runs in an isolated environment while sharing the host kernel.
 
----
+* A centralized **supervisor** manages container lifecycle and prevents zombie processes
+* **IPC** is implemented using pipes and CLI-based communication
+* Memory limits are enforced using a **kernel module**:
 
-### 7. Scheduling experiment
-
-![Scheduling](screenshots/7_scheduling.png)
-
----
-
-### 8. Clean teardown
-
-![Teardown](screenshots/8_teardown.png)
+  * Soft limits trigger warnings
+  * Hard limits terminate processes
+* Demonstrates Linux scheduling using CPU-bound and I/O-bound workloads
 
 ---
 
-## 4. Engineering Analysis
+## ⚖️ Design Decisions & Trade-offs
 
-This project uses Linux namespaces and chroot to isolate containers. Each container runs in its own environment while sharing the host kernel.
-
-The supervisor manages container lifecycle and ensures no zombie processes remain.
-
-IPC is implemented using pipes and CLI-based communication.
-
-Memory limits are enforced using a kernel module where soft limits trigger warnings and hard limits terminate processes.
-
-Linux scheduling is demonstrated using CPU-bound and I/O-bound workloads.
+* Namespace isolation is simple but less secure than advanced virtualization techniques
+* A single supervisor simplifies control but introduces a **single point of failure**
+* Pipes are used for IPC due to simplicity but have limitations
+* Kernel module monitoring provides precise control but requires **root access**
 
 ---
 
-## 5. Design Decisions and Tradeoffs
+## 📊 Scheduler Experiment Results
 
-Namespace isolation is simple but less secure than advanced approaches.
+* **CPU-bound processes** continuously consume CPU resources
+* **I/O-bound processes** yield CPU while waiting
 
-A single supervisor simplifies control but introduces a single point of failure.
-
-Pipes are used for IPC due to simplicity but have limitations.
-
-Kernel module monitoring provides accurate control but requires root access.
+➡️ Demonstrates fairness of the **Completely Fair Scheduler (CFS)** in Linux
 
 ---
 
-## 6. Scheduler Experiment Results
+## ✅ Conclusion
 
-CPU-bound processes continuously consume CPU resources.
+This project demonstrates key Operating System concepts:
 
-I/O-bound processes yield CPU while waiting.
-
-This demonstrates fairness in Linux Completely Fair Scheduler (CFS).
+* Containerization
+* Process management
+* Inter-process communication
+* Memory monitoring
+* CPU scheduling
 
 ---
-
-## Conclusion
-
-This project demonstrates key OS concepts including containerization, process management, IPC, memory monitoring, and scheduling.
