@@ -9,7 +9,7 @@ TEAM NAME: V.E.C.T.O.R
 Name: Neeraj R Gowda
 SRN: 295
 
-Name: Nallamalli Kanaka Mani Sai Akhil
+Name: N K Mani Sai Akhil
 SRN: PES1UG24CS290
 
 ---
