@@ -7,7 +7,7 @@
 TEAM NAME: V.E.C.T.O.R
 
 Name: Neeraj R Gowda
-SRN: 295
+SRN: PES1UG24CS290
 
 Name: N K Mani Sai Akhil
 SRN: PES1UG24CS290
